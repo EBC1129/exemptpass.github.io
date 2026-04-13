@@ -1,0 +1,1000 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="ExemptPass eliminates paper Form 01-339 tax exemption certificates at checkout for nonprofits. Instant QR-based verification for 501(c)(3) organizations at participating retailers.">
+<meta name="keywords" content="nonprofit tax exemption, Form 01-339, Texas nonprofit, 501c3, tax exempt verification, ExemptPass">
+<meta property="og:title" content="ExemptPass — Digital Tax Exemption Verification for Nonprofits">
+<meta property="og:description" content="No more paper forms at the checkout counter. Nonprofits verify their tax exemption status instantly with a QR code.">
+<meta property="og:type" content="website">
+<title>ExemptPass — Paperless Tax Exemption Verification for Nonprofits</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --blue:       #1A5FA8;
+    --blue-dark:  #0D3B73;
+    --blue-light: #D6E8F7;
+    --blue-mid:   #2B72C2;
+    --green:      #2E7D32;
+    --green-light:#E8F5E9;
+    --amber:      #E65100;
+    --amber-light:#FFF8E1;
+    --maroon:     #B71C1C;
+    --maroon-light:#FBE9E7;
+    --gray-100:   #F8F9FA;
+    --gray-200:   #E9ECEF;
+    --gray-400:   #ADB5BD;
+    --gray-600:   #6C757D;
+    --gray-800:   #343A40;
+    --gray-900:   #1A1A2E;
+    --white:      #FFFFFF;
+    --text:       #1A1A2E;
+    --text-muted: #555F6D;
+    --radius:     10px;
+    --radius-lg:  16px;
+    --shadow:     0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.06);
+    --shadow-md:  0 4px 16px rgba(0,0,0,0.10);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--text);
+    background: var(--white);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(255,255,255,0.96);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--gray-200);
+    padding: 0 2rem;
+  }
+  .nav-inner {
+    max-width: 1080px; margin: 0 auto;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 60px;
+  }
+  .nav-brand {
+    display: flex; align-items: center; gap: 10px;
+    text-decoration: none;
+  }
+  .nav-logo {
+    width: 32px; height: 32px;
+    background: var(--blue); border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .nav-logo svg { width: 18px; height: 18px; }
+  .nav-name {
+    font-size: 18px; font-weight: 600; color: var(--blue-dark);
+    letter-spacing: -0.3px;
+  }
+  .nav-links {
+    display: flex; align-items: center; gap: 2rem;
+    list-style: none;
+  }
+  .nav-links a {
+    font-size: 14px; color: var(--text-muted);
+    text-decoration: none; font-weight: 500;
+    transition: color 0.15s;
+  }
+  .nav-links a:hover { color: var(--blue); }
+  .nav-cta {
+    background: var(--blue); color: var(--white) !important;
+    padding: 8px 18px; border-radius: var(--radius);
+    font-size: 14px; font-weight: 500;
+    text-decoration: none; transition: background 0.15s;
+  }
+  .nav-cta:hover { background: var(--blue-dark) !important; color: var(--white) !important; }
+
+  /* ── SECTIONS ── */
+  section { padding: 6rem 2rem; }
+  .container { max-width: 1080px; margin: 0 auto; }
+  .section-label {
+    font-size: 12px; font-weight: 600; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--blue);
+    margin-bottom: 12px;
+  }
+  h1 { font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 600; line-height: 1.2; letter-spacing: -0.5px; }
+  h2 { font-size: clamp(1.6rem, 3.5vw, 2.2rem); font-weight: 600; line-height: 1.3; letter-spacing: -0.3px; }
+  h3 { font-size: 1.15rem; font-weight: 600; }
+  p { color: var(--text-muted); line-height: 1.75; }
+
+  /* ── HERO ── */
+  .hero {
+    background: var(--gray-100);
+    border-bottom: 1px solid var(--gray-200);
+    padding: 7rem 2rem 6rem;
+    text-align: center;
+  }
+  .hero-pilot {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: var(--blue-light); color: var(--blue-dark);
+    font-size: 12px; font-weight: 600; letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 5px 14px; border-radius: 20px;
+    margin-bottom: 1.5rem;
+  }
+  .hero-pilot-dot {
+    width: 7px; height: 7px; border-radius: 50%;
+    background: var(--blue); flex-shrink: 0;
+  }
+  .hero h1 { margin-bottom: 1.25rem; max-width: 760px; margin-left: auto; margin-right: auto; }
+  .hero h1 span { color: var(--blue); }
+  .hero-sub {
+    font-size: 1.15rem; color: var(--text-muted);
+    max-width: 600px; margin: 0 auto 2.5rem;
+  }
+  .hero-actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--blue); color: var(--white);
+    padding: 13px 28px; border-radius: var(--radius);
+    font-size: 15px; font-weight: 500; text-decoration: none;
+    transition: background 0.15s; border: none; cursor: pointer;
+    display: inline-block;
+  }
+  .btn-primary:hover { background: var(--blue-dark); }
+  .btn-secondary {
+    background: var(--white); color: var(--blue);
+    padding: 13px 28px; border-radius: var(--radius);
+    font-size: 15px; font-weight: 500; text-decoration: none;
+    border: 1.5px solid var(--blue); transition: all 0.15s;
+    display: inline-block;
+  }
+  .btn-secondary:hover { background: var(--blue-light); }
+
+  /* ── STATS BAR ── */
+  .stats-bar {
+    background: var(--blue-dark); color: var(--white);
+    padding: 1.5rem 2rem;
+  }
+  .stats-inner {
+    max-width: 1080px; margin: 0 auto;
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 1rem; text-align: center;
+  }
+  .stat-num { font-size: 1.8rem; font-weight: 600; color: var(--white); }
+  .stat-lbl { font-size: 12px; color: rgba(255,255,255,0.65); margin-top: 2px; }
+
+  /* ── PROBLEM ── */
+  .problem-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 3rem; align-items: center;
+  }
+  .problem-visual {
+    background: var(--maroon-light);
+    border: 1px solid #F09595;
+    border-radius: var(--radius-lg);
+    padding: 2rem;
+  }
+  .problem-scene {
+    display: flex; flex-direction: column; gap: 12px;
+  }
+  .scene-item {
+    display: flex; align-items: center; gap: 12px;
+    background: var(--white); border-radius: var(--radius);
+    padding: 10px 14px; font-size: 13px; color: var(--text);
+    border: 1px solid var(--gray-200);
+  }
+  .scene-icon {
+    width: 32px; height: 32px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; font-size: 14px; font-weight: 700;
+  }
+  .si-red { background: #FFEBEE; color: var(--maroon); }
+  .si-amber { background: var(--amber-light); color: var(--amber); }
+  .problem-label {
+    font-size: 11px; font-weight: 600; color: var(--maroon);
+    text-transform: uppercase; letter-spacing: 0.08em;
+    margin-bottom: 1rem;
+  }
+  .problem-text { font-size: 0.95rem; color: var(--text-muted); margin-bottom: 1.5rem; }
+  .problem-text strong { color: var(--text); font-weight: 600; }
+
+  /* ── HOW IT WORKS ── */
+  .how-section { background: var(--gray-100); }
+  .steps-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem; margin-top: 3rem;
+  }
+  .step-card {
+    background: var(--white); border-radius: var(--radius-lg);
+    border: 1px solid var(--gray-200);
+    padding: 1.75rem; position: relative;
+    box-shadow: var(--shadow);
+  }
+  .step-num {
+    width: 36px; height: 36px; border-radius: 50%;
+    background: var(--blue); color: var(--white);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px; font-weight: 600;
+    margin-bottom: 1rem;
+  }
+  .step-card h3 { margin-bottom: 8px; font-size: 1rem; }
+  .step-card p { font-size: 0.9rem; }
+  .step-arrow {
+    position: absolute; right: -20px; top: 50%;
+    transform: translateY(-50%);
+    color: var(--gray-400); font-size: 18px;
+    display: none;
+  }
+
+  /* ── CASHIER DEMO ── */
+  .demo-section { text-align: center; }
+  .demo-screen {
+    display: inline-block;
+    background: var(--white);
+    border: 1.5px solid var(--gray-200);
+    border-radius: var(--radius-lg);
+    padding: 2rem;
+    margin-top: 3rem;
+    max-width: 440px;
+    width: 100%;
+    box-shadow: var(--shadow-md);
+    text-align: left;
+  }
+  .demo-approved {
+    background: var(--green-light);
+    border: 2px solid var(--green);
+    border-radius: var(--radius);
+    padding: 1.25rem;
+    margin-bottom: 1.25rem;
+    display: flex; align-items: flex-start; gap: 14px;
+  }
+  .demo-check {
+    width: 44px; height: 44px; border-radius: 50%;
+    background: var(--green); color: var(--white);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px; font-weight: 700; flex-shrink: 0;
+  }
+  .demo-title { font-size: 16px; font-weight: 600; color: var(--green); margin-bottom: 3px; }
+  .demo-sub { font-size: 13px; color: #388E3C; }
+  .demo-fields {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+  .demo-field {
+    background: var(--gray-100); border-radius: 8px;
+    padding: 8px 12px;
+  }
+  .demo-field-label { font-size: 10px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--gray-600); margin-bottom: 2px; }
+  .demo-field-val { font-size: 13px; font-weight: 500; color: var(--text); }
+  .demo-speed {
+    text-align: center; margin-top: 1rem;
+    font-size: 12px; color: var(--gray-600);
+  }
+  .demo-speed strong { color: var(--green); font-weight: 600; }
+
+  /* ── WHO IT SERVES ── */
+  .serve-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem; margin-top: 3rem;
+  }
+  .serve-card {
+    border: 1px solid var(--gray-200); border-radius: var(--radius-lg);
+    padding: 1.5rem; background: var(--white);
+  }
+  .serve-icon {
+    width: 44px; height: 44px; border-radius: var(--radius);
+    background: var(--blue-light);
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 1rem;
+  }
+  .serve-icon svg { width: 22px; height: 22px; }
+  .serve-card h3 { font-size: 0.95rem; margin-bottom: 6px; }
+  .serve-card p { font-size: 0.875rem; }
+
+  /* ── VETERAN ── */
+  .veteran-section {
+    background: var(--maroon-light);
+    border-top: 1px solid #F09595;
+    border-bottom: 1px solid #F09595;
+  }
+  .veteran-inner {
+    display: flex; gap: 3rem; align-items: center;
+  }
+  .veteran-badge {
+    width: 80px; height: 80px; border-radius: 50%;
+    background: var(--maroon); color: var(--white);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .veteran-badge svg { width: 40px; height: 40px; }
+  .veteran-text h2 { color: var(--maroon); font-size: 1.5rem; margin-bottom: 10px; }
+  .veteran-text p { color: #7B1010; font-size: 0.95rem; }
+
+  /* ── FOR RETAILERS ── */
+  .retailer-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 3rem; align-items: center;
+    margin-top: 3rem;
+  }
+  .retailer-benefits { display: flex; flex-direction: column; gap: 16px; }
+  .benefit-row { display: flex; gap: 14px; align-items: flex-start; }
+  .benefit-dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--blue); flex-shrink: 0; margin-top: 7px;
+  }
+  .benefit-title { font-size: 14px; font-weight: 600; color: var(--text); margin-bottom: 2px; }
+  .benefit-sub { font-size: 13px; color: var(--text-muted); }
+  .retailer-card {
+    background: var(--gray-100); border: 1px solid var(--gray-200);
+    border-radius: var(--radius-lg); padding: 2rem;
+  }
+  .retailer-card h3 { margin-bottom: 1rem; font-size: 1rem; }
+  .chain-list { display: flex; flex-direction: column; gap: 10px; }
+  .chain-item {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 10px 14px; background: var(--white);
+    border: 1px solid var(--gray-200); border-radius: var(--radius);
+    font-size: 13px; font-weight: 500; color: var(--text);
+  }
+  .chain-status {
+    font-size: 11px; padding: 2px 9px; border-radius: 20px; font-weight: 600;
+  }
+  .cs-pilot { background: var(--green-light); color: var(--green); }
+  .cs-talks { background: var(--amber-light); color: var(--amber); }
+  .cs-interest { background: var(--blue-light); color: var(--blue-dark); }
+
+  /* ── PILOT ── */
+  .pilot-section { background: var(--blue-dark); color: var(--white); }
+  .pilot-section .section-label { color: rgba(255,255,255,0.6); }
+  .pilot-section h2 { color: var(--white); }
+  .pilot-section p { color: rgba(255,255,255,0.75); }
+  .pilot-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 3rem; align-items: center; margin-top: 2.5rem;
+  }
+  .pilot-steps { display: flex; flex-direction: column; gap: 20px; }
+  .pilot-step { display: flex; gap: 14px; }
+  .pilot-step-num {
+    width: 28px; height: 28px; border-radius: 50%;
+    background: rgba(255,255,255,0.15); color: var(--white);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px; font-weight: 600; flex-shrink: 0; margin-top: 2px;
+  }
+  .pilot-step-title { font-size: 14px; font-weight: 600; color: var(--white); margin-bottom: 2px; }
+  .pilot-step-sub { font-size: 13px; color: rgba(255,255,255,0.65); }
+  .roadmap-card {
+    background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15);
+    border-radius: var(--radius-lg); padding: 1.75rem;
+  }
+  .roadmap-item {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.1);
+    font-size: 13px;
+  }
+  .roadmap-item:last-child { border-bottom: none; }
+  .roadmap-phase { color: rgba(255,255,255,0.9); font-weight: 500; }
+  .roadmap-state { font-size: 11px; padding: 3px 10px; border-radius: 20px; font-weight: 600; }
+  .rs-live { background: var(--green-light); color: var(--green); }
+  .rs-next { background: var(--amber-light); color: var(--amber); }
+  .rs-plan { background: rgba(255,255,255,0.12); color: rgba(255,255,255,0.7); }
+
+  /* ── CTA ── */
+  .cta-section { text-align: center; background: var(--gray-100); }
+  .cta-section h2 { margin-bottom: 1rem; }
+  .cta-section p { max-width: 560px; margin: 0 auto 2.5rem; }
+  .cta-cards {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem; max-width: 860px; margin: 0 auto 3rem;
+  }
+  .cta-card {
+    background: var(--white); border: 1px solid var(--gray-200);
+    border-radius: var(--radius-lg); padding: 1.5rem;
+    text-align: left;
+  }
+  .cta-card-tag {
+    font-size: 11px; font-weight: 600; text-transform: uppercase;
+    letter-spacing: 0.06em; padding: 3px 10px; border-radius: 20px;
+    margin-bottom: 12px; display: inline-block;
+  }
+  .ct-nonprofit { background: var(--green-light); color: var(--green); }
+  .ct-retailer { background: var(--blue-light); color: var(--blue-dark); }
+  .ct-partner { background: var(--amber-light); color: var(--amber); }
+  .cta-card h3 { font-size: 0.95rem; margin-bottom: 6px; }
+  .cta-card p { font-size: 0.85rem; margin-bottom: 14px; }
+  .cta-link {
+    font-size: 13px; font-weight: 600; color: var(--blue);
+    text-decoration: none;
+  }
+  .cta-link:hover { text-decoration: underline; }
+
+  /* ── CONTACT ── */
+  .contact-section { padding: 5rem 2rem; }
+  .contact-inner {
+    max-width: 580px; margin: 0 auto; text-align: center;
+  }
+  .contact-inner h2 { margin-bottom: 10px; }
+  .contact-inner > p { margin-bottom: 2rem; }
+  .contact-form { display: flex; flex-direction: column; gap: 12px; text-align: left; }
+  .form-group { display: flex; flex-direction: column; gap: 4px; }
+  .form-label { font-size: 13px; font-weight: 500; color: var(--text); }
+  .form-input {
+    padding: 10px 14px; border: 1.5px solid var(--gray-200);
+    border-radius: var(--radius); font-size: 14px; font-family: inherit;
+    color: var(--text); outline: none; transition: border-color 0.15s;
+    background: var(--white);
+  }
+  .form-input:focus { border-color: var(--blue); }
+  textarea.form-input { min-height: 110px; resize: vertical; }
+  .form-select {
+    appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236C757D' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat; background-position: right 14px center;
+    padding-right: 36px;
+  }
+  .form-submit {
+    background: var(--blue); color: var(--white);
+    padding: 12px; border-radius: var(--radius);
+    border: none; font-size: 15px; font-weight: 500;
+    cursor: pointer; font-family: inherit;
+    transition: background 0.15s;
+  }
+  .form-submit:hover { background: var(--blue-dark); }
+  .form-note { font-size: 12px; color: var(--gray-600); text-align: center; margin-top: 4px; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--gray-900); color: rgba(255,255,255,0.7);
+    padding: 3rem 2rem;
+  }
+  .footer-inner {
+    max-width: 1080px; margin: 0 auto;
+    display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 2.5rem;
+  }
+  .footer-brand { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
+  .footer-brand-name { font-size: 17px; font-weight: 600; color: var(--white); }
+  .footer-desc { font-size: 13px; line-height: 1.65; }
+  .footer-col h4 { font-size: 13px; font-weight: 600; color: var(--white); margin-bottom: 14px; }
+  .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+  .footer-col ul li a { font-size: 13px; color: rgba(255,255,255,0.6); text-decoration: none; transition: color 0.15s; }
+  .footer-col ul li a:hover { color: var(--white); }
+  .footer-bottom {
+    max-width: 1080px; margin: 2.5rem auto 0;
+    padding-top: 1.5rem; border-top: 1px solid rgba(255,255,255,0.1);
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 1rem;
+  }
+  .footer-bottom p { font-size: 12px; color: rgba(255,255,255,0.4); }
+  .footer-vet {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: rgba(183,28,28,0.25); color: #EF9A9A;
+    font-size: 11px; font-weight: 600; letter-spacing: 0.05em;
+    padding: 4px 12px; border-radius: 20px;
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    nav { padding: 0 1rem; }
+    .nav-links { display: none; }
+    section { padding: 4rem 1.25rem; }
+    .stats-inner { grid-template-columns: 1fr 1fr; }
+    .problem-grid, .retailer-grid, .pilot-grid { grid-template-columns: 1fr; }
+    .steps-grid, .serve-grid, .cta-cards { grid-template-columns: 1fr; }
+    .footer-inner { grid-template-columns: 1fr 1fr; }
+    .veteran-inner { flex-direction: column; text-align: center; }
+    h1 { font-size: 2rem; }
+    h2 { font-size: 1.6rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ══ NAV ══ -->
+<nav>
+  <div class="nav-inner">
+    <a href="#" class="nav-brand">
+      <div class="nav-logo">
+        <svg viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M9 2L11.5 6.5H16.5L12.5 9.5L14.5 14.5L9 11L3.5 14.5L5.5 9.5L1.5 6.5H6.5L9 2Z" fill="white"/>
+        </svg>
+      </div>
+      <span class="nav-name">ExemptPass</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#how-it-works">How it works</a></li>
+      <li><a href="#who-it-serves">Who it serves</a></li>
+      <li><a href="#for-retailers">For retailers</a></li>
+      <li><a href="#pilot">Texas pilot</a></li>
+      <li><a href="#contact" class="nav-cta">Get early access</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- ══ HERO ══ -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-pilot">
+      <span class="hero-pilot-dot"></span>
+      Texas pilot — launching 2025
+    </div>
+    <h1>No more paper forms<br><span>at the checkout counter.</span></h1>
+    <p class="hero-sub">ExemptPass lets nonprofits verify their tax exemption status instantly with a QR code — replacing paper Form 01-339 at participating retailers across Texas.</p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn-primary">Register your nonprofit</a>
+      <a href="#how-it-works" class="btn-secondary">See how it works</a>
+    </div>
+  </div>
+</section>
+
+<!-- ══ STATS ══ -->
+<div class="stats-bar">
+  <div class="stats-inner">
+    <div>
+      <div class="stat-num">74,000+</div>
+      <div class="stat-lbl">Texas nonprofits affected</div>
+    </div>
+    <div>
+      <div class="stat-num">1.8M+</div>
+      <div class="stat-lbl">US nonprofits eligible</div>
+    </div>
+    <div>
+      <div class="stat-num">&lt; 2 sec</div>
+      <div class="stat-lbl">Verification time at register</div>
+    </div>
+    <div>
+      <div class="stat-num">$0</div>
+      <div class="stat-lbl">Cost to register during pilot</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ PROBLEM ══ -->
+<section id="problem">
+  <div class="container">
+    <div class="problem-grid">
+      <div>
+        <div class="section-label">The problem</div>
+        <h2>Your volunteers shouldn't need a briefcase full of paperwork to buy paper towels.</h2>
+        <p class="problem-text" style="margin-top:1rem">Every time a Texas nonprofit purchases bulk supplies at a store, they are legally required to present a <strong>signed paper Form 01-339</strong> at the register. The cashier has usually never seen it. The line backs up. Managers get called. Sometimes the exemption is denied entirely.</p>
+        <p class="problem-text">This happens <strong>millions of times a year</strong> across Texas's 74,000 nonprofits — food banks, shelters, veteran service posts, churches, and community organizations that exist to serve people, not stand in checkout lines.</p>
+        <p class="problem-text">The incumbent solution is a piece of paper. <strong>ExemptPass replaces it.</strong></p>
+      </div>
+      <div class="problem-visual">
+        <div class="problem-label">The current experience</div>
+        <div class="problem-scene">
+          <div class="scene-item">
+            <div class="scene-icon si-red">!</div>
+            <span>Volunteer arrives with stack of paper Form 01-339s</span>
+          </div>
+          <div class="scene-item">
+            <div class="scene-icon si-amber">?</div>
+            <span>Cashier has never seen the form before</span>
+          </div>
+          <div class="scene-item">
+            <div class="scene-icon si-red">!</div>
+            <span>Manager called — checkout line backs up</span>
+          </div>
+          <div class="scene-item">
+            <div class="scene-icon si-amber">?</div>
+            <span>Exemption sometimes denied — nonprofit pays full price</span>
+          </div>
+          <div class="scene-item">
+            <div class="scene-icon si-red">!</div>
+            <span>No digital record — paper forms easily lost or damaged</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ HOW IT WORKS ══ -->
+<section id="how-it-works" class="how-section">
+  <div class="container">
+    <div style="text-align:center;max-width:600px;margin:0 auto">
+      <div class="section-label">How it works</div>
+      <h2>Set up once. Use everywhere.</h2>
+      <p style="margin-top:12px">A nonprofit registers one time. From that point forward, every authorized buyer has a personal QR code that works at any participating retailer.</p>
+    </div>
+    <div class="steps-grid">
+      <div class="step-card">
+        <div class="step-num">1</div>
+        <h3>Nonprofit registers</h3>
+        <p>Upload your IRS determination letter and completed Form 01-339. Our system verifies both against IRS and Texas Comptroller records. Takes 1–3 business days.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">2</div>
+        <h3>Buyers get personal QR codes</h3>
+        <p>Your account admin assigns up to 3 authorized buyers. Each receives a personal QR code saved in Apple Wallet, Google Wallet, or as a printed card. Unique, non-transferable, instantly revocable.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">3</div>
+        <h3>Instant verification at checkout</h3>
+        <p>The cashier scans the QR. A green verified screen appears in under 2 seconds — no paper, no manager call, no delay. Every transaction is automatically logged for your records.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ CASHIER DEMO ══ -->
+<section class="demo-section">
+  <div class="container">
+    <div class="section-label">What the cashier sees</div>
+    <h2>A green screen. In under 2 seconds.</h2>
+    <p style="max-width:520px;margin:10px auto 0">No paper review. No manager call. No line delay. Just a clear, instant confirmation that the purchase is tax-exempt and the buyer is verified.</p>
+    <div class="demo-screen">
+      <div class="demo-approved">
+        <div class="demo-check">&#10003;</div>
+        <div>
+          <div class="demo-title">Tax exempt — apply exemption</div>
+          <div class="demo-sub">Verified authorized buyer &middot; 501(c)(3) organization</div>
+        </div>
+      </div>
+      <div class="demo-fields">
+        <div class="demo-field">
+          <div class="demo-field-label">Organization</div>
+          <div class="demo-field-val">Hill Country Food Pantry</div>
+        </div>
+        <div class="demo-field">
+          <div class="demo-field-label">Authorized buyer</div>
+          <div class="demo-field-val">James Whitfield</div>
+        </div>
+        <div class="demo-field">
+          <div class="demo-field-label">Entity type</div>
+          <div class="demo-field-val">501(c)(3) Public Charity</div>
+        </div>
+        <div class="demo-field">
+          <div class="demo-field-label">Valid through</div>
+          <div class="demo-field-val">Dec 31, 2026</div>
+        </div>
+        <div class="demo-field">
+          <div class="demo-field-label">IRS status</div>
+          <div class="demo-field-val" style="color:var(--green);font-weight:600">Current &#10003;</div>
+        </div>
+        <div class="demo-field">
+          <div class="demo-field-label">Form 01-339</div>
+          <div class="demo-field-val" style="color:var(--green);font-weight:600">On file &#10003;</div>
+        </div>
+      </div>
+      <div class="demo-speed">Verified in <strong>1.3 seconds</strong> &middot; Audit log saved automatically</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ WHO IT SERVES ══ -->
+<section id="who-it-serves" style="background:var(--gray-100)">
+  <div class="container">
+    <div class="section-label">Who ExemptPass serves</div>
+    <h2>Built for every Texas nonprofit that buys in bulk.</h2>
+    <div class="serve-grid">
+      <div class="serve-card">
+        <div class="serve-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#1A5FA8" stroke-width="2" stroke-linecap="round">
+            <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9,22 9,12 15,12 15,22"/>
+          </svg>
+        </div>
+        <h3>Food banks &amp; pantries</h3>
+        <p>Organizations purchasing bulk food, supplies, and equipment for distribution to families in need.</p>
+      </div>
+      <div class="serve-card">
+        <div class="serve-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#1A5FA8" stroke-width="2" stroke-linecap="round">
+            <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/>
+          </svg>
+        </div>
+        <h3>Veteran service organizations</h3>
+        <p>American Legion posts, VFW chapters, veteran food banks, and veteran housing organizations serving those who served.</p>
+      </div>
+      <div class="serve-card">
+        <div class="serve-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#1A5FA8" stroke-width="2" stroke-linecap="round">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+          </svg>
+        </div>
+        <h3>Shelters &amp; rescue missions</h3>
+        <p>Homeless shelters, domestic violence organizations, and rescue missions purchasing household and care supplies.</p>
+      </div>
+      <div class="serve-card">
+        <div class="serve-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#1A5FA8" stroke-width="2" stroke-linecap="round">
+            <circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/>
+          </svg>
+        </div>
+        <h3>Churches &amp; faith communities</h3>
+        <p>Religious organizations running outreach programs, food drives, and community services across Texas.</p>
+      </div>
+      <div class="serve-card">
+        <div class="serve-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#1A5FA8" stroke-width="2" stroke-linecap="round">
+            <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.8 19.79 19.79 0 01.15 1.18 2 2 0 012.12 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14.92z"/>
+          </svg>
+        </div>
+        <h3>Community organizations</h3>
+        <p>Youth sports leagues, after-school programs, neighborhood associations, and civic groups serving Texas communities.</p>
+      </div>
+      <div class="serve-card">
+        <div class="serve-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#1A5FA8" stroke-width="2" stroke-linecap="round">
+            <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/>
+          </svg>
+        </div>
+        <h3>Animal rescues &amp; shelters</h3>
+        <p>Organizations purchasing food, medical supplies, and equipment for rescued and sheltered animals.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ VETERAN ══ -->
+<section class="veteran-section">
+  <div class="container">
+    <div class="veteran-inner">
+      <div class="veteran-badge">
+        <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M20 4L24 14H35L26 21L29 32L20 25L11 32L14 21L5 14H16L20 4Z" fill="white"/>
+        </svg>
+      </div>
+      <div class="veteran-text">
+        <h2>Veteran-founded. Mission-driven.</h2>
+        <p>ExemptPass was founded by a 100% service-connected disabled U.S. Navy veteran in Red Oak, Texas. The platform is built to serve the nonprofit organizations — including veteran service posts and veteran food banks — that do the essential work of keeping communities whole. We are not a venture-backed startup chasing an exit. We are veterans and neighbors building infrastructure for the sector that needs it most.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FOR RETAILERS ══ -->
+<section id="for-retailers">
+  <div class="container">
+    <div class="section-label">For retailers</div>
+    <h2>Better for your cashiers. Better for your records. Better for your line.</h2>
+    <div class="retailer-grid">
+      <div class="retailer-benefits">
+        <div class="benefit-row">
+          <div class="benefit-dot"></div>
+          <div>
+            <div class="benefit-title">Eliminate line delays</div>
+            <div class="benefit-sub">No more paper form reviews, manager calls, or frustrated customers standing behind a nonprofit volunteer at the register.</div>
+          </div>
+        </div>
+        <div class="benefit-row">
+          <div class="benefit-dot"></div>
+          <div>
+            <div class="benefit-title">Legal protection in audits</div>
+            <div class="benefit-sub">Every exempted transaction is time-stamped and logged. If a state auditor questions an exemption, ExemptPass provides complete documentation instantly — better than any paper trail.</div>
+          </div>
+        </div>
+        <div class="benefit-row">
+          <div class="benefit-dot"></div>
+          <div>
+            <div class="benefit-title">Good-faith reliance protection</div>
+            <div class="benefit-sub">Retailers who act in good faith on a valid ExemptPass verification are protected under our retailer agreement — eliminating tax liability exposure from erroneous exemption grants.</div>
+          </div>
+        </div>
+        <div class="benefit-row">
+          <div class="benefit-dot"></div>
+          <div>
+            <div class="benefit-title">Simple integration</div>
+            <div class="benefit-sub">Browser-based terminal, POS SDK, or API integration. Works with your existing checkout systems. No hardware required for pilot participation.</div>
+          </div>
+        </div>
+        <a href="#contact" class="btn-primary" style="width:fit-content;margin-top:8px">Become a pilot retail partner</a>
+      </div>
+      <div class="retailer-card">
+        <h3>Pilot retail partners</h3>
+        <div class="chain-list">
+          <div class="chain-item">H-E-B <span class="chain-status cs-pilot">Priority pilot target</span></div>
+          <div class="chain-item">Sam's Club <span class="chain-status cs-talks">In discussions</span></div>
+          <div class="chain-item">Costco <span class="chain-status cs-talks">In discussions</span></div>
+          <div class="chain-item">Walmart <span class="chain-status cs-interest">Interested</span></div>
+          <div class="chain-item">Target <span class="chain-status cs-interest">Interested</span></div>
+        </div>
+        <p style="font-size:12px;margin-top:1rem;color:var(--gray-600)">Retailer integration is free during the Texas pilot phase. Contact us to discuss your participation.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ PILOT / ROADMAP ══ -->
+<section id="pilot" class="pilot-section">
+  <div class="container">
+    <div class="section-label">Texas pilot &amp; national roadmap</div>
+    <h2>Starting in Texas. Expanding everywhere.</h2>
+    <p style="max-width:560px;margin-top:10px">Texas is the right place to start — 74,000 nonprofits, a clear state exemption form, and a reachable Comptroller's office. The framework we build here becomes the model for every other state.</p>
+    <div class="pilot-grid">
+      <div class="pilot-steps">
+        <div class="pilot-step">
+          <div class="pilot-step-num">1</div>
+          <div>
+            <div class="pilot-step-title">Texas Comptroller engagement</div>
+            <div class="pilot-step-sub">Pursuing a Private Letter Ruling to formally establish digital verification authority under Texas Tax Code.</div>
+          </div>
+        </div>
+        <div class="pilot-step">
+          <div class="pilot-step-num">2</div>
+          <div>
+            <div class="pilot-step-title">Texas pilot launch</div>
+            <div class="pilot-step-sub">25–100 Texas nonprofits onboarded. Live at H-E-B pilot locations across the DFW and Austin metro areas.</div>
+          </div>
+        </div>
+        <div class="pilot-step">
+          <div class="pilot-step-num">3</div>
+          <div>
+            <div class="pilot-step-title">National expansion</div>
+            <div class="pilot-step-sub">Replicating the Texas framework across all 45 sales-tax states. Each state's exemption certificate mapped and digitized.</div>
+          </div>
+        </div>
+        <div class="pilot-step">
+          <div class="pilot-step-num">4</div>
+          <div>
+            <div class="pilot-step-title">Federal recognition</div>
+            <div class="pilot-step-sub">Pursuing formal recognition of ExemptPass as an IRS-endorsed digital verification platform for 501(c)(3) organizations nationwide.</div>
+          </div>
+        </div>
+      </div>
+      <div class="roadmap-card">
+        <div class="roadmap-item"><span class="roadmap-phase">Texas — Form 01-339 pilot</span><span class="roadmap-state rs-live">Active</span></div>
+        <div class="roadmap-item"><span class="roadmap-phase">Florida — Form DR-14</span><span class="roadmap-state rs-next">Phase 2</span></div>
+        <div class="roadmap-item"><span class="roadmap-phase">Georgia — Form ST-5</span><span class="roadmap-state rs-next">Phase 2</span></div>
+        <div class="roadmap-item"><span class="roadmap-phase">Tennessee — Form FAE-183</span><span class="roadmap-state rs-next">Phase 2</span></div>
+        <div class="roadmap-item"><span class="roadmap-phase">North Carolina</span><span class="roadmap-state rs-next">Phase 2</span></div>
+        <div class="roadmap-item"><span class="roadmap-phase">California, New York, Illinois</span><span class="roadmap-state rs-plan">Phase 3</span></div>
+        <div class="roadmap-item"><span class="roadmap-phase">All 45 sales-tax states</span><span class="roadmap-state rs-plan">Phase 4</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ CTA ══ -->
+<section class="cta-section">
+  <div class="container">
+    <div class="section-label">Get involved</div>
+    <h2>Be part of the pilot.</h2>
+    <p>Whether you are a nonprofit, a retailer, or an organization that wants to support the mission — there is a place for you in the ExemptPass pilot.</p>
+    <div class="cta-cards">
+      <div class="cta-card">
+        <div class="cta-card-tag ct-nonprofit">Nonprofits</div>
+        <h3>Register for early access</h3>
+        <p>Join the waitlist for the Texas pilot. Free to register. Free during the pilot phase.</p>
+        <a href="#contact" class="cta-link">Register your organization &rarr;</a>
+      </div>
+      <div class="cta-card">
+        <div class="cta-card-tag ct-retailer">Retailers</div>
+        <h3>Become a pilot partner</h3>
+        <p>Integrate ExemptPass at your Texas locations. Free during pilot. Full audit protection included.</p>
+        <a href="#contact" class="cta-link">Contact us about partnership &rarr;</a>
+      </div>
+      <div class="cta-card">
+        <div class="cta-card-tag ct-partner">Organizations</div>
+        <h3>Support the mission</h3>
+        <p>Nonprofit associations, foundations, and government agencies — we want to hear from you.</p>
+        <a href="#contact" class="cta-link">Get in touch &rarr;</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ CONTACT ══ -->
+<section id="contact" class="contact-section">
+  <div class="container">
+    <div class="contact-inner">
+      <div class="section-label" style="text-align:center">Contact</div>
+      <h2>Get in touch</h2>
+      <p>Whether you are a nonprofit ready to register, a retailer interested in the pilot, or an organization that wants to support this work — fill out the form below and we will respond within 2 business days.</p>
+      <form class="contact-form" onsubmit="handleSubmit(event)">
+        <div class="form-group">
+          <label class="form-label" for="name">Your name</label>
+          <input class="form-input" type="text" id="name" name="name" placeholder="Full name" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="email">Email address</label>
+          <input class="form-input" type="email" id="email" name="email" placeholder="you@organization.org" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="org">Organization name</label>
+          <input class="form-input" type="text" id="org" name="org" placeholder="Your organization">
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="type">I am a...</label>
+          <select class="form-input form-select" id="type" name="type">
+            <option value="">Select one</option>
+            <option value="nonprofit">Nonprofit organization</option>
+            <option value="retailer">Retailer / retail chain</option>
+            <option value="association">Nonprofit association or coalition</option>
+            <option value="government">Government agency or official</option>
+            <option value="investor">Investor / accelerator</option>
+            <option value="media">Media / journalist</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="message">Message</label>
+          <textarea class="form-input" id="message" name="message" placeholder="Tell us how you would like to get involved..."></textarea>
+        </div>
+        <button type="submit" class="form-submit" id="submit-btn">Send message</button>
+        <p class="form-note" id="form-note">We respond within 2 business days. Your information is never shared or sold.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FOOTER ══ -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-brand">
+        <div class="nav-logo">
+          <svg viewBox="0 0 18 18" fill="none"><path d="M9 2L11.5 6.5H16.5L12.5 9.5L14.5 14.5L9 11L3.5 14.5L5.5 9.5L1.5 6.5H6.5L9 2Z" fill="white"/></svg>
+        </div>
+        <span class="footer-brand-name">ExemptPass</span>
+      </div>
+      <p class="footer-desc">Paperless tax exemption verification for nonprofit organizations. Piloting in Texas. Expanding nationwide.</p>
+      <div style="margin-top:1rem">
+        <span class="footer-vet">
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 1L7.5 4.5H11.5L8.5 6.5L9.5 10L6 7.5L2.5 10L3.5 6.5L0.5 4.5H4.5L6 1Z" fill="#EF9A9A"/></svg>
+          100% Disabled Veteran Founded
+        </span>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Platform</h4>
+      <ul>
+        <li><a href="#how-it-works">How it works</a></li>
+        <li><a href="#who-it-serves">Who it serves</a></li>
+        <li><a href="#for-retailers">For retailers</a></li>
+        <li><a href="#pilot">Texas pilot</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Organizations</h4>
+      <ul>
+        <li><a href="#contact">Nonprofits — register</a></li>
+        <li><a href="#contact">Retailers — partner</a></li>
+        <li><a href="#contact">Associations — support</a></li>
+        <li><a href="#contact">Investors</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Legal</h4>
+      <ul>
+        <li><a href="#">Privacy policy</a></li>
+        <li><a href="#">Terms of service</a></li>
+        <li><a href="#">Security</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2025 ExemptPass. All rights reserved. Red Oak, Texas.</p>
+    <p>Veteran-founded &middot; Mission-driven &middot; Texas-first</p>
+  </div>
+</footer>
+
+<script>
+function handleSubmit(e) {
+  e.preventDefault();
+  const btn = document.getElementById('submit-btn');
+  const note = document.getElementById('form-note');
+  btn.textContent = 'Message sent \u2714';
+  btn.style.background = '#2E7D32';
+  btn.disabled = true;
+  note.textContent = 'Thank you! We will respond within 2 business days.';
+  note.style.color = '#2E7D32';
+  note.style.fontWeight = '500';
+}
+
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const id = a.getAttribute('href').slice(1);
+    if (!id) return;
+    const el = document.getElementById(id);
+    if (el) {
+      e.preventDefault();
+      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  });
+});
+</script>
+</body>
+</html>
